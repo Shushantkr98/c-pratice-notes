@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweetzon - आपके पसंदीदा मिठाइयों की दुकान | Amazon जैसी थीम</title>
+    <link href="https://fonts.googleapis.com/css2?family=AmazonEmber:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Amazon जैसी थीम: डार्क हेडर, ऑरेंज एक्सेंट, क्लीन लेआउट */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'AmazonEmber', Arial, sans-serif;
+            background-color: #f3f3f3;
+            color: #0f1111;
+        }
+        /* हेडर */
+        .header {
+            background: linear-gradient(135deg, #232f3e 0%, #1e2a35 100%);
+            color: white;
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff9900, #ff7f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+        .search-input {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            padding: 0 1rem;
+            font-size: 1rem;
+        }
+        .search-btn {
+            background: #ff9900;
+            border: none;
+            height: 40px;
+            width: 45px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-icons {
+            display: flex;
+            gap: 1rem;
+            margin-left: 1rem;
+        }
+        .header-icons a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        .header-icons i {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+        /* नेविगेशन बार */
+        .nav-bar {
+            background: #232f3e;
+            padding: 0.5rem 0;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            flex: 1;
+        }
+        .nav-menu li {
+            margin-right: 2rem;
+        }
+        .nav-menu a {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #ff9900;
+        }
+        /* हीरो सेक्शन */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwMCIgaGVpZ2h0PSI0MDAiIHZpZXdCb3g9IjAgMCAxNDAwIDQwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGVsbGlwc2UgY3g9IjcwMCIgY3k9IjIwMCIgcng9IjQwMCIgcnk9IjIwMCIgZmlsbD0iI2ZmOTkwMCIvPgo8L3N2Zz4K') center/cover;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        /* कैटेगरी */
+        .categories {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0f1111;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .category-card:hover {
+            transform: translateY(-2px);
+        }
+        .category-card i {
+            font-size: 3rem;
+            color: #ff9900;
+            margin-bottom: 0.5rem;
+        }
+        /* प्रोडक्ट्स */
+        .products {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #ffdbac, #ffc0cb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #ff9900;
+        }
+        .product-info {
+            padding: 1rem;
+        }
+        .product-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #B12704;
+        }
+        .add-to-cart {
+            width: 100%;
+            background: #ff9900;
+            border: none;
+            padding: 0.7rem;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+        }
+        .add-to-cart:hover {
+            background: #e67917;
+        }
+        /* फूटर */
+        .footer {
+            background: #232f3e;
+            color: #ddd;
+            padding: 2rem 0 1rem;
+            margin-top: 3rem;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #3a4553;
+            color: #999;
+            margin-top: 2rem;
+        }
+        /* रेस्पॉन्सिव */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .search-container {
+                max-width: 100%;
+            }
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero {
+                font-size: 1.5rem;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- हेडर -->
+    <header class="header">
+        <div class="header-top">
+            <a href="#" class="logo">Sweetzon</a>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="मिठाइयाँ खोजें... गुलाब जामुन, जलेबी, आदि">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-user"></i>अकाउंट</a>
+                <a href="#"><i class="fas fa-heart"></i>विशलिस्ट</a>
+                <a href="#"><i class="fas fa-shopping-cart"></i>कार्ट (0)</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- नेविगेशन -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#">घर</a></li>
+                <li><a href="#">भारतीय मिठाइयाँ</a></li>
+                <li><a href="#">ड्राई फ्रूट्स</a></li>
+                <li><a href="#">केक</a></li>
+                <li><a href="#">चॉकलेट</a></li>
+                <li><a href="#">ऑफर्स</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- हीरो बैनर -->
+    <section class="hero">
+        स्वागत है Sweetzon पर! सबसे ताज़ा मिठाइयाँ 50% तक छूट पर 🧁🍬
+    </section>
+
+    <!-- कैटेगरी -->
+    <section class="categories">
+        <h2 class="section-title">श्रेणियाँ</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <i class="fas fa-cookie-bite"></i>
+                <h3>भारतीय मिठाइयाँ</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-candy-cane"></i>
+                <h3>ड्राई फ्रूट मिठाई</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-birthday-cake"></i>
+                <h3>केक &amp; पास्ट्री</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-ice-cream"></i>
+                <h3>आइसक्रीम</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-chocolate-bar"></i>
+                <h3>चॉकलेट</h3>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-gift"></i>
+                <h3>गिफ्ट पैक</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- फीचर्ड प्रोडक्ट्स -->
+    <section class="products">
+        <h2 class="section-title">लोकप्रिय मिठाइयाँ</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-gem"></i></div>
+                <div class="product-info">
+                    <div class="product-title">गुलाब जामुन (1 किलो)</div>
+                    <div class="product-price">₹299</div>
+                    <button class="add-to-cart">कार्ट में डालें</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-drumstick-bite"></i></div>
+                <div class="product-info">
+                    <div class="product-title">जलेबी फ्रेश (500g)</div>
+                    <div class="product-price">₹199</div>
+                    <button class="add-to-cart">कार्ट में डालें</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-cookie"></i></div>
+                <div class="product-info">
+                    <div class="product-title">रसगुल्ला स्पेशल (1 दर्जन)</div>
+                    <div class="product-price">₹249</div>
+                    <button class="add-to-cart">कार्ट में डालें</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-lemon"></i></div>
+                <div class="product-info">
+                    <div class="product-title">लाडू मिक्स (1 किलो)</div>
+                    <div class="product-price">₹349</div>
+                    <button class="add-to-cart">कार्ट में डालें</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-utensils"></i></div>
+                <div class="product-info">
+                    <div class="product-title">बर्फी काजू (500g)</div>
+                    <div class="product-price">₹399</div>
+                    <button class="add-to-cart">कार्ट में डालें</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image"><i class="fas fa-star"></i></div>
+                <div class="product-info">
+                    <div class="product-title">पेड़ा (1 किलो)</div>
+                    <div class="product-price">₹289</div>
+                    <button class="add-to-cart">कार्ट में डालें</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- फूटर -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sweetzon के बारे में</h3>
+                <a href="#">कैरियर</a>
+                <a href="#">प्रेस</a>
+                <a href="#">हमसे संपर्क करें</a>
+            </div>
+            <div class="footer-section">
+                <h3>ग्राहक सेवा</h3>
+                <a href="#">आपकी खरीदारी</a>
+                <a href="#">रिटर्न &amp; रिफंड</a>
+                <a href="#">सहायता</a>
+            </div>
+            <div class="footer-section">
+                <h3>मिठाइयाँ</h3>
+                <a href="#">भारतीय मिठाइयाँ</a>
+                <a href="#">ड्राई फ्रूट्स</a>
+                <a href="#">केक</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sweetzon. सभी अधिकार सुरक्षित। | Designed like Amazon for Sweets!</p>
+        </div>
+    </footer>
+
+    <script>
+        // सरल इंटरैक्शन: कार्ट अपडेट, सर्च
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                alert('कार्ट में जोड़ा गया! 🎉');
+            });
+        });
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const query = document.querySelector('.search-input').value;
+            if (query) alert(`खोज रहे हैं: ${query}`);
+        });
+    </script>
+</body>
+</html>
